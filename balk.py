@@ -1,13 +1,13 @@
 import pygame
 
 beam1 = 'beam1.png'
-beam2 = 'beam2.png'
+
 image1 = pygame.image.load(beam1)
-image2 = pygame.image.load(beam2)
+
 beam1= pygame.transform.flip(image1, 0, 1)
-beam2= pygame.transform.flip(image1, 0, 1)
+
 beam1 = pygame.transform.scale(beam1, [image1.get_width() * 3, image1.get_height() * 3])
-beam2 = pygame.transform.scale(beam2, [image2.get_width() * 3, image2.get_height() * 3])
+
 
 
 class Balk():
@@ -18,7 +18,7 @@ class Balk():
         self.list=[]
         self.image=beam1
     def maker(self):
-        balk=pygame.surface.Surface([1400,50],pygame.SRCALPHA)
+        balk=pygame.surface.Surface([self.how_many*beam1.get_width(),beam1.get_height()],pygame.SRCALPHA)
         for beam in self.list:
             balk.blit(self.image,[beam.x,0])
         return balk
