@@ -1,7 +1,8 @@
-import pygame ,balk,level
+import pygame ,balk,level,barrel
 
 l=level.Level()
+b=barrel.Barrel()
 def model():
-    pass
+    b.go(l.list[4])
 
 

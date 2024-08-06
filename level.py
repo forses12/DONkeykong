@@ -5,25 +5,28 @@ class Level():
         p= balk.Balk(0, 48)
         self.image_balk = p.beam_building()
         self.list=[]
-        self.list_image=[]
         self.level_maker()
 
-    def sozdavatel(self):
-        for l in range(len(self.list)):
-            pygame.display.get_surface().blit(self.list_image[l], [self.list[l].left, self.list[l].top])
-            pygame.draw.rect(pygame.display.get_surface(),'#ffffff',self.list[l],1)
+    def maker(self):
+        for l in self.list:
+            pygame.display.get_surface().blit(l['image'], l['rect'])
+            pygame.draw.rect(pygame.display.get_surface(),'#ffffff',l['rect'],1)
     def level_maker(self):
         for a in range(5):
+            v={}
             image_balk=self.image_balk
+            angle=2
             if a!=0 and a%2>0:
-                image_balk = pygame.transform.rotate(self.image_balk,-2)
+                image_balk = pygame.transform.rotate(self.image_balk,-angle)
+                v['angle']=-angle
             elif a!=0 and a%2==0:
-                image_balk = pygame.transform.rotate(self.image_balk, 2)
-
+                image_balk = pygame.transform.rotate(self.image_balk, angle)
+                v['angle'] = angle
+            v["image"]=image_balk
             l=pygame.rect.Rect(50,650-(image_balk.get_height()+50)*a,
                                image_balk.get_width(),image_balk.get_height())
-            self.list.append(l)
-            self.list_image.append(image_balk)
+            v['rect']=l
+            self.list.append(v)
 
 
 
