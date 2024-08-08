@@ -41,5 +41,5 @@ class Barrel():
         self.center[1]+=3
         self.rect.center = self.center
 
-q
+
 
