@@ -18,10 +18,12 @@ class Level():
             angle=2
             if a!=0 and a%2>0:
                 image_balk = pygame.transform.rotate(self.image_balk,-angle)
-                v['angle']=-angle
+                v['angle']=-(90+angle)
             elif a!=0 and a%2==0:
                 image_balk = pygame.transform.rotate(self.image_balk, angle)
-                v['angle'] = angle
+                v['angle'] = 90+angle
+            else:
+                v['angle']=90
             v["image"]=image_balk
             l=pygame.rect.Rect(50,650-(image_balk.get_height()+50)*a,
                                image_balk.get_width(),image_balk.get_height())
