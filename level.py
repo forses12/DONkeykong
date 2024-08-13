@@ -10,7 +10,10 @@ class Level():
     def maker(self):
         for l in self.list:
             pygame.display.get_surface().blit(l['image'], l['rect'])
-            pygame.draw.rect(pygame.display.get_surface(),'#ffffff',l['rect'],1)
+
+    def rects_maker(self):
+        for l in self.list:
+            pygame.draw.rect(pygame.display.get_surface(), '#ffffff', l['rect'], 1)
     def level_maker(self):
         for a in range(5):
             v={}
@@ -29,6 +32,8 @@ class Level():
                                image_balk.get_width(),image_balk.get_height())
             v['rect']=l
             self.list.append(v)
+        self.list[-1]['rect'].left+=50
+        self.list[-3]['rect'].left+=50
 
 
 

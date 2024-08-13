@@ -3,6 +3,11 @@ screen=pygame.display.set_mode([1400,700])
 
 def view():
     screen.fill([0,0,0])
-    model.l.maker()
-    model.b.maker()
+    if model.show_racts:
+        model.l.rects_maker()
+        model.b.rects_maker()
+    if model.show_images:
+        model.l.maker()
+        model.b.maker()
+
     pygame.display.flip()
