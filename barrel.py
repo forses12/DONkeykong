@@ -19,12 +19,12 @@ class Barrel():
 
         if self.c['angle']<0:
             self.rect.centerx=self.c['rect'].left
-            self.rect.bottom=self.c['rect'].top-100
+            self.rect.bottom=self.c['rect'].top+1
 
 
         else:
             self.rect.centerx = self.c['rect'].right
-            self.rect.bottom = self.c['rect'].top-100
+            self.rect.bottom = self.c['rect'].top+1
 
         pygame.time.set_timer(p, 10)
         self.center=list(self.rect.center)
@@ -43,14 +43,17 @@ class Barrel():
         self.rect.center=self.center
 
     def controller(self,event):
-        self.dpc()
+        print(self.rect)
+
         for e in event:
             if e.type==p and self.can_go:
                 self.go()
+                self.dpc()
             elif e.type==p:
                 self.fall()
+                self.dpc()
     def dpc(self):
-        if self.dpc_math(self.c)<self.rect.bottom:
+        if not self.rect.colliderect(self.c['rect']):
             self.dpc_helper()
             self.can_go = False
         else :
@@ -67,7 +70,7 @@ class Barrel():
         best_balk=[]
         y=10000
         for c in self.list:
-            if c['rect'].left <= self.rect.right and c['rect'].right >= self.rect.left and c['rect'].top<self.rect.top:
+            if c['rect'].left <= self.rect.right and c['rect'].right >= self.rect.left and c['rect'].top>self.rect.top:
                 best_balk.append(c)
         for c in best_balk:
             if y>c['rect'].top:
@@ -75,12 +78,12 @@ class Barrel():
                 y=c['rect'].top
     def dpc_math(self,balk):
         angle=abs(balk['angle'])-90
-        if balk['angle'] < 0:
+        if balk['angle'] > 0:
             x=balk['rect'].right-self.rect.centerx
-        elif self.c['angle']>0:
-            x = self.rect.centerx-balk['rect'].right
+        elif balk['angle']<0:
+            x = self.rect.centerx-balk['rect'].left
 
-        y=balk['rect'].top+math.tan(angle)*x
+        y=balk['rect'].top+math.tan(math.radians(angle))*x
         return y
 
 

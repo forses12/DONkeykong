@@ -28,6 +28,5 @@ class Balk():
             rect=pygame.Rect(xy,beam1.get_size())
             self.list.append(rect)
 
-            print(xy)
         return self.maker()
 

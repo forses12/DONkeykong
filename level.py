@@ -34,6 +34,7 @@ class Level():
             self.list.append(v)
         self.list[-1]['rect'].left+=50
         self.list[-3]['rect'].left+=50
+        self.list[-5]['rect'].left+=50
 
 
 
