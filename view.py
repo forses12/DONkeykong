@@ -1,5 +1,5 @@
 import pygame,model
-screen=pygame.display.set_mode([1400,700])
+screen=pygame.display.set_mode([1800,1300])
 
 def view():
     screen.fill([0,0,0])
