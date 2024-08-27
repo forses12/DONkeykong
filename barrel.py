@@ -7,6 +7,7 @@ img_1 = 'img_1.png'
 img_1 = pygame.image.load(img_1)
 img_1 = pygame.transform.scale(img_1, [img_1.get_width() * 3, img_1.get_width() * 3])
 p = pygame.event.custom_type()
+d = pygame.event.custom_type()
 
 
 class Barrel():
@@ -24,7 +25,8 @@ class Barrel():
             self.rect.centerx = self.c['rect'].right
             self.rect.bottom = self.c['rect'].top + 1
 
-        pygame.time.set_timer(p, 1000)
+        pygame.time.set_timer(p, 10)
+        pygame.time.set_timer(d, 100)
         self.center = list(self.rect.center)
         self.can_go = True
         self.angle=0
@@ -47,8 +49,8 @@ class Barrel():
         # self.rect.center=math_utils.get_point_by_angle([*self.rect.center],92,3)
         self.rect.center = self.center
 
-    def muve(self):
-        self.coup()
+    def move(self):
+
         if self.can_go:
             self.go()
         else:
@@ -59,7 +61,9 @@ class Barrel():
     def controller(self, event):
         print(self.rect)
         for e in event:
-            if e.type == p: self.muve()
+            if e.type == p: self.move()
+            if e.type == d: self.coup()
+
 
     def dpc(self):
         if not self.rect.colliderect(self.c['rect']):

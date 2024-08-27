@@ -1,4 +1,4 @@
-import pygame,balk
+import pygame,balk, ladder
 
 class Level():
     def __init__(self):
@@ -35,7 +35,6 @@ class Level():
         self.list[-1]['rect'].left+=50
         self.list[-3]['rect'].left+=50
         self.list[-5]['rect'].left+=50
-
 
 
 
