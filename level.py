@@ -1,3 +1,5 @@
+import random
+
 import pygame,balk, ladder
 
 class Level():
@@ -6,6 +8,7 @@ class Level():
         self.image_balk = p.beam_building()
         self.list=[]
         self.level_maker()
+        self.ladder=ladder.Ladder()
 
     def maker(self):
         for l in self.list:
@@ -22,6 +25,8 @@ class Level():
             if a!=0 and a%2>0:
                 image_balk = pygame.transform.rotate(self.image_balk,-angle)
                 v['angle']=-(90+angle)
+                h=[]
+
             elif a!=0 and a%2==0:
                 image_balk = pygame.transform.rotate(self.image_balk, angle)
                 v['angle'] = 90+angle
@@ -35,6 +40,13 @@ class Level():
         self.list[-1]['rect'].left+=50
         self.list[-3]['rect'].left+=50
         self.list[-5]['rect'].left+=50
+    def add_ladder(self):
+        for a in range(1,len(self.list)-1):
+            h=[]
+            for l in range(random.randint(1, 3)):
+                h.append(self.ladder.ladder_maker( self.list[a],self.list[a-1]))
+            self.list[a]['bottom_ladder']=h
+            self.list[a-1]['top_ladder']=h
 
 
 
