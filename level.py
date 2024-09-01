@@ -1,6 +1,6 @@
 import random
 
-import pygame,balk, ladder
+import pygame,balk, garage
 
 class Level():
     def __init__(self):
@@ -8,7 +8,7 @@ class Level():
         self.image_balk = p.beam_building()
         self.list=[]
         self.level_maker()
-        self.ladder=ladder.Ladder()
+
 
     def maker(self):
         for l in self.list:
@@ -43,10 +43,13 @@ class Level():
     def add_ladder(self):
         for a in range(1,len(self.list)-1):
             h=[]
+            self.garage=garage.Garage(self.list[a], self.list[a - 1])
             for l in range(random.randint(1, 3)):
-                h.append(self.ladder.ladder_maker( self.list[a],self.list[a-1]))
+                h.append(garage.ladder)
             self.list[a]['bottom_ladder']=h
             self.list[a-1]['top_ladder']=h
+            print(self.list[a]['bottom_ladder'])
+
 
 
 

@@ -10,6 +10,6 @@ def view():
     if model.show_images:
         model.l.maker()
         model.b.maker()
-        model.l.ladder.maker()
+        model.l.garage.ladder.maker()
 
     pygame.display.flip()
