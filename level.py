@@ -1,6 +1,6 @@
 import random
 
-import pygame,balk, garage
+import pygame,balk, ladder
 
 class Level():
     def __init__(self):
@@ -14,9 +14,14 @@ class Level():
         for l in self.list:
             pygame.display.get_surface().blit(l['image'], l['rect'])
 
+
     def rects_maker(self):
         for l in self.list:
             pygame.draw.rect(pygame.display.get_surface(), '#ffffff', l['rect'], 1)
+            if  'bottom_ladder' in l:
+                for ladder in l['bottom_ladder']:
+                    pygame.draw.rect(pygame.display.get_surface(), '#ffffff', ladder.rect, 1)
+
     def level_maker(self):
         for a in range(5):
             v={}
@@ -40,12 +45,13 @@ class Level():
         self.list[-1]['rect'].left+=50
         self.list[-3]['rect'].left+=50
         self.list[-5]['rect'].left+=50
+        self. add_ladder()
     def add_ladder(self):
-        for a in range(1,len(self.list)-1):
+        for a in range(1,len(self.list)):
             h=[]
-            self.garage=garage.Garage(self.list[a], self.list[a - 1])
-            for l in range(random.randint(1, 3)):
-                h.append(garage.ladder)
+            for l in range(random.randint(4, 6)):
+                self.garage = ladder.Ladder.garage(self.list[a], self.list[a - 1])
+                h.append(self.garage)
             self.list[a]['bottom_ladder']=h
             self.list[a-1]['top_ladder']=h
             print(self.list[a]['bottom_ladder'])
