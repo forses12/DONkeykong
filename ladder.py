@@ -16,18 +16,7 @@ class Ladder():
         left=self.side('left')
         right=self.side('right')
         if 'bottom_ladder' in self.topbalk:
-
-            while True:
-                x=random.randint(left,right)
-                for k in self.topbalk['bottom_ladder']:
-                    if x+50<k.rect.left or x-50>k.rect.right:
-                        continue
-                    else:
-                        x=0
-                        break
-                if x!=0:
-                    self.rect.centerx=x
-                    break
+            print('af')
         else:
             self.rect.centerx=random.randint(left,right)
         self.rect.centery=self.topbalk['rect'].centery
@@ -49,6 +38,36 @@ class Ladder():
     def garage(balk,bottom_balk):
         lader=Ladder(balk,bottom_balk)
         return lader
+
+    @staticmethod
+    def math(list,start,stop,minimaldis):
+        while True:
+            x = random.randint(start, stop)
+            for a in list:
+                left=a-minimaldis
+                right=a+minimaldis
+                if x<left or x>right:
+                    continue
+                else:
+                    x = 0
+                    break
+            if x !=0:
+                return x
+
+
+
+        # while True:
+        #     x = random.randint(left, right)
+        #     for k in self.topbalk['bottom_ladder']:
+        #         if x + 100 < k.rect.left or x - 100 > k.rect.right:
+        #             continue
+        #         else:
+        #             x = 0
+        #             break
+        #     if x != 0:
+        #         self.rect.centerx = x
+        #         break
+
 
 
 
