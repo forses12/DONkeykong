@@ -92,12 +92,13 @@ class Barrel():
                 y = c['rect'].top
 
     def dpc_math(self, balk):
-        angle = abs(balk['angle']) - 90
-        if balk['angle'] > 0:
-            x = balk['rect'].right - self.rect.centerx
-
-        elif balk['angle'] < 0:
-            x = self.rect.centerx - balk['rect'].left
-
-        y = balk['rect'].top + math.tan(math.radians(angle)) * x
+        # angle = abs(balk['angle']) - 90
+        # if balk['angle'] > 0:
+        #     x = balk['rect'].right - self.rect.centerx
+        #
+        # elif balk['angle'] < 0:
+        #     x = self.rect.centerx - balk['rect'].left
+        #
+        # y = balk['rect'].top + math.tan(math.radians(angle)) * x
+        y=math_utils.get_y_by_angle_and_x(balk['rect'],balk['angle'],self.rect.centerx)
         return y

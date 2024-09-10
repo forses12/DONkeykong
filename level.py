@@ -48,12 +48,11 @@ class Level():
         self. add_ladder()
     def add_ladder(self):
         for a in range(1,len(self.list)):
-            h=[]
-            for l in range(random.randint(4, 6)):
+            self.list[a]['bottom_ladder'] = []
+            for l in range(random.randint(1, 3)):
                 self.garage = ladder.Ladder.garage(self.list[a], self.list[a - 1])
-                h.append(self.garage)
-            self.list[a]['bottom_ladder']=h
-            self.list[a-1]['top_ladder']=h
+                self.list[a]['bottom_ladder'].append(self.garage)
+            self.list[a-1]['top_ladder']=self.list[a]['bottom_ladder']
             print(self.list[a]['bottom_ladder'])
 
 

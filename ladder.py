@@ -1,4 +1,4 @@
-import pygame,img_helper,random
+import pygame,img_helper,random ,math_utils,math
 
 
 v=img_helper.loader("ladder_top.png",'ladder_middle.png','ladder_bottom.png',folder='DonkeyKong/items/ladder/green/')
@@ -15,10 +15,10 @@ class Ladder():
     def ladder_maker(self):
         left=self.side('left')
         right=self.side('right')
-        if 'bottom_ladder' in self.topbalk:
-            print('af')
-        else:
-            self.rect.centerx=random.randint(left,right)
+        f=[]
+        for  a in self.topbalk['bottom_ladder']:
+            f.append(a.rect.centerx)
+        self.rect.centerx=self.math(f,left,right,100)
         self.rect.centery=self.topbalk['rect'].centery
 
 
@@ -53,6 +53,12 @@ class Ladder():
                     break
             if x !=0:
                 return x
+
+
+
+
+
+
 
 
 

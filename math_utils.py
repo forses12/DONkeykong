@@ -286,3 +286,13 @@ def vibor_ygol(ugol_tochki, ugol_samoleta):
         ugol_tochki = angle_pointp2
 
     return -ugol_tochki
+
+
+def  get_y_by_angle_and_x(rect, angle, x):
+    modul_angle = abs(angle) - 90
+    if angle < 0:
+        x = x - rect.left
+    else:
+        x = rect.right-x
+
+    return rect.top + math.tan(math.radians(modul_angle)) * (x)
