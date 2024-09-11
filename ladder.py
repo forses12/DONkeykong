@@ -5,11 +5,12 @@ v=img_helper.loader("ladder_top.png",'ladder_middle.png','ladder_bottom.png',fol
 
 
 class Ladder():
-    def __init__(self,top_balk,bottom_balk):
+    def __init__(self,top_balk,bottom_balk,level):
         self.ladder_top, self.ladder_middle, self.ladder_bottom = v
         self.rect=pygame.Rect(0,0,10,10)
         self.topbalk=top_balk
         self.bottombalk=bottom_balk
+        self.level=level
         self.ladder_maker()
 
     def ladder_maker(self):
@@ -19,7 +20,9 @@ class Ladder():
         for  a in self.topbalk['bottom_ladder']:
             f.append(a.rect.centerx)
         self.rect.centerx=self.math(f,left,right,100)
-        self.rect.centery=self.topbalk['rect'].centery
+        self.rect.top=self.level.get_balk_y_by_x(self.rect.centerx,self.topbalk,'bottom')
+        self.rect.height=self.level.get_balk_y_by_x(self.rect.centerx,self.bottombalk,'top')-self.rect.top
+
 
 
     def side(self,side):
@@ -35,8 +38,8 @@ class Ladder():
                 x = self.topbalk['rect'].right - 50
         return x
     @staticmethod
-    def garage(balk,bottom_balk):
-        lader=Ladder(balk,bottom_balk)
+    def garage(balk,bottom_balk,level):
+        lader=Ladder(balk,bottom_balk,level)
         return lader
 
     @staticmethod

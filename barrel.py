@@ -11,10 +11,11 @@ d = pygame.event.custom_type()
 
 
 class Barrel():
-    def __init__(self, listp):
+    def __init__(self, listp,level):
         self.rect = pygame.rect.Rect(1000, 50, img_1.get_width(), img_1.get_height())
         self.list = listp
         self.dpc_helper()
+        self.level=level
 
         if self.c['angle'] < 0:
             self.rect.centerx = self.c['rect'].left
@@ -70,7 +71,7 @@ class Barrel():
             self.dpc_helper()
             self.can_go = False
         else:
-            self.rect.bottom = self.dpc_math(self.c)
+            self.rect.bottom = self.level.get_balk_y_by_x(self.rect.centerx,self.c,'top')
             self.can_go = True
 
     def fall(self):
@@ -90,15 +91,3 @@ class Barrel():
             if y > c['rect'].top:
                 self.c = c
                 y = c['rect'].top
-
-    def dpc_math(self, balk):
-        # angle = abs(balk['angle']) - 90
-        # if balk['angle'] > 0:
-        #     x = balk['rect'].right - self.rect.centerx
-        #
-        # elif balk['angle'] < 0:
-        #     x = self.rect.centerx - balk['rect'].left
-        #
-        # y = balk['rect'].top + math.tan(math.radians(angle)) * x
-        y=math_utils.get_y_by_angle_and_x(balk['rect'],balk['angle'],self.rect.centerx)
-        return y

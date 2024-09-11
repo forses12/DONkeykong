@@ -1,11 +1,11 @@
 import random
 
-import pygame,balk, ladder
+import pygame,balk, ladder,math_utils
 
 class Level():
     def __init__(self):
-        p= balk.Balk(0, 48)
-        self.image_balk = p.beam_building()
+        self.p= balk.Balk(0, 48)
+        self.image_balk = self.p.beam_building()
         self.list=[]
         self.level_maker()
 
@@ -50,10 +50,19 @@ class Level():
         for a in range(1,len(self.list)):
             self.list[a]['bottom_ladder'] = []
             for l in range(random.randint(1, 3)):
-                self.garage = ladder.Ladder.garage(self.list[a], self.list[a - 1])
+                self.garage = ladder.Ladder.garage(self.list[a], self.list[a - 1],self)
                 self.list[a]['bottom_ladder'].append(self.garage)
             self.list[a-1]['top_ladder']=self.list[a]['bottom_ladder']
             print(self.list[a]['bottom_ladder'])
+    def get_balk_y_by_x(self,x,balk,type):
+        if type=='bottom':
+            u=+self.p.y
+        elif type=='top':
+            u=0
+        y=math_utils.get_y_by_angle_and_x(balk['rect'],balk['angle'],x)+u
+        return y
+
+
 
 
 

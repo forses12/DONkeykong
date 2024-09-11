@@ -14,7 +14,7 @@ class Balk():
     def __init__(self,x,how_many):
         self.x=x
         self.how_many=how_many
-
+        self.y=beam1.get_height()
         self.list=[]
         self.image=beam1
     def maker(self):
