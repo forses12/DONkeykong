@@ -13,6 +13,10 @@ class Level():
     def maker(self):
         for l in self.list:
             pygame.display.get_surface().blit(l['image'], l['rect'])
+            if 'bottom_ladder' in l:
+                for ladder in l['bottom_ladder']:
+                        pygame.display.get_surface().blit(ladder.images['image'],ladder.images['xy'])
+
 
 
     def rects_maker(self):

@@ -35,6 +35,7 @@ class Barrel():
 
     def maker(self):
         pygame.display.get_surface().blit(self.img_1, self.rect)
+        pygame.draw.rect(pygame.display.get_surface(), '#ffffff', self.c['rect'], 1)
     def coup(self):
         global img_1
         self.angle+=90
@@ -70,6 +71,9 @@ class Barrel():
         if not self.rect.colliderect(self.c['rect']):
             self.dpc_helper()
             self.can_go = False
+        elif self.ladder_rect() is not None:
+            self.c=self.ladder_rect().bottombalk
+            self.can_go= False
         else:
             self.rect.bottom = self.level.get_balk_y_by_x(self.rect.centerx,self.c,'top')
             self.can_go = True
@@ -77,6 +81,15 @@ class Barrel():
     def fall(self):
         self.center[1] += 3
         self.rect.center = self.center
+    def ladder_rect(self):
+        if 'bottom_ladder' not in self.c:
+            return None
+        for a in self.c['bottom_ladder']:
+            if a.rect.x>=self.rect.x and :
+                return a
+        return None
+
+
 
     def dpc_helper(self):
         best_balk = []

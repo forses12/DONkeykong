@@ -10,6 +10,7 @@ class Ladder():
         self.rect=pygame.Rect(0,0,10,10)
         self.topbalk=top_balk
         self.bottombalk=bottom_balk
+        self.images={}
         self.level=level
         self.ladder_maker()
 
@@ -22,7 +23,14 @@ class Ladder():
         self.rect.centerx=self.math(f,left,right,100)
         self.rect.top=self.level.get_balk_y_by_x(self.rect.centerx,self.topbalk,'bottom')
         self.rect.height=self.level.get_balk_y_by_x(self.rect.centerx,self.bottombalk,'top')-self.rect.top
+        self.rect.width=self.ladder_bottom.get_width()
+        self.calculation_stairs()
 
+    def calculation_stairs(self):
+        a=self.rect.height//self.ladder_bottom.get_height()
+        for l in range(a):
+            self.images['image']=self.ladder_bottom
+            self.images['xy']=[self.rect.x,self.rect.y+self.ladder_bottom.get_height()*l]
 
 
     def side(self,side):
