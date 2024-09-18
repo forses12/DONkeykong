@@ -1,4 +1,4 @@
-import math
+import math , random
 
 import pygame, math_utils
 
@@ -18,7 +18,8 @@ class Barrel():
         self.level=level
 
         if self.c['angle'] < 0:
-            self.rect.centerx = self.c['rect'].left
+            self.left = self.c['rect'].left
+            self.rect.centerx = self.left
             self.rect.bottom = self.c['rect'].top + 1
 
 
@@ -61,7 +62,7 @@ class Barrel():
 
 
     def controller(self, event):
-        print(self.rect)
+
         for e in event:
             if e.type == p: self.move()
             if e.type == d: self.coup()
@@ -71,7 +72,7 @@ class Barrel():
         if not self.rect.colliderect(self.c['rect']):
             self.dpc_helper()
             self.can_go = False
-        elif self.ladder_rect() is not None:
+        elif self.ladder_rect() is not None and random.choice([True,False,False,False]):
             self.c=self.ladder_rect().bottombalk
             self.can_go= False
         else:
@@ -85,20 +86,21 @@ class Barrel():
         if 'bottom_ladder' not in self.c:
             return None
         for a in self.c['bottom_ladder']:
-            if a.rect.x>=self.rect.x and :
+            if  a.rect.centerx-2 <= self.rect.centerx <= a.rect.centerx+2:
+                print(a)
                 return a
         return None
 
 
 
     def dpc_helper(self):
+
         best_balk = []
         for c in self.list:
             if      c['rect'].left <= self.rect.right and \
                     c['rect'].right >= self.rect.left and \
-                    c['rect'].top > self.rect.top:
+                    c['rect'].top >= self.rect.bottom:
                 best_balk.append(c)
-
         y = 10000
         for c in best_balk:
             if y > c['rect'].top:

@@ -57,7 +57,7 @@ class Level():
                 self.garage = ladder.Ladder.garage(self.list[a], self.list[a - 1],self)
                 self.list[a]['bottom_ladder'].append(self.garage)
             self.list[a-1]['top_ladder']=self.list[a]['bottom_ladder']
-            print(self.list[a]['bottom_ladder'])
+
     def get_balk_y_by_x(self,x,balk,type):
         if type=='bottom':
             u=+self.p.y
