@@ -27,11 +27,17 @@ class Ladder():
         self.calculation_stairs()
 
     def calculation_stairs(self):
-        a=self.rect.height//self.ladder_bottom.get_height()
+        a=self.rect.height//self.ladder_middle.get_height()
+        b=self.rect.height%self.ladder_middle.get_height()
+        x=[]
+        y=[]
+        x.append(pygame.transform.scale(self.ladder_top,[self.rect.width,b]))
+        y.append([self.rect.x, self.rect.y])
         for l in range(a):
-            self.images['image']=self.ladder_bottom
-            self.images['xy']=[self.rect.x,self.rect.y+self.ladder_bottom.get_height()*l]
-
+            x.append(self.ladder_middle)
+            y.append([self.rect.x,self.rect.y+self.ladder_middle.get_height()*l+b])
+        self.images['image']=x
+        self.images['xy']=y
 
     def side(self,side):
         if side=='left':
